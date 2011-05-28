@@ -30,7 +30,7 @@ var msg = jadeify('msg.jade', {
 
 ````
 
-[See here](https://github.com/substack/node-jadeify/example/simple)
+[See here](https://github.com/substack/node-jadeify/tree/master/example/simple)
 for a more complete example.
 
 browser-side methods
