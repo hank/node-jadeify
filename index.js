@@ -10,6 +10,7 @@ var sources = {
     jadeify : browserify.wrap('jadeify').source,
     jquery : browserify.wrap('jquery-browserify', { name : 'jquery' }).source,
     jade : browserify.wrap('jade').source,
+    traverse : browserify.wrap('traverse').source,
 };
 
 module.exports = function (opts) {
@@ -47,15 +48,12 @@ module.exports = function (opts) {
             var c = { setTimeout : function () {} };
             vm.runInNewContext(fsrc, c);
             
-            if (!c.require.modules.jadeify) {
-                fsrc += sources.jadeify;
-            }
-            if (!c.require.modules.jquery) {
-                fsrc += sources.jquery;
-            }
-            if (!c.require.modules.jade) {
-                fsrc += sources.jade;
-            }
+            Object.keys(sources).forEach(function (pkg) {
+                if (!c.require.modules[pkg]) {
+                    fsrc += sources[pkg];
+                }
+            });
+            
             next(fsrc);
         });
     };
