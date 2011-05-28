@@ -1,4 +1,4 @@
-var views = require('views');
+var views = require('./views');
 var jade = require('jade');
 var $ = require('jquery');
 

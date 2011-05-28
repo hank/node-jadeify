@@ -40,7 +40,8 @@ module.exports = function (opts) {
     if (!viewdir) throw new Error('No suitable views directory');
     
     return function (src, next) {
-        fileify('views', viewdir)(src, function (fsrc, fnext) {
+        fileify('jadeify/views', viewdir)
+        (src, function (fsrc, fnext) {
             // eval but don't run the entries which are behind a
             // process.nextTick() which calls setTimeout
             var c = { setTimeout : function () {} };
