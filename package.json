@@ -1,0 +1,39 @@
+{
+    "name" : "jadeify",
+    "version" : "0.0.1",
+    "description" : "Browserify middleware to render jade templates browser-side",
+    "main" : "index.js",
+    "directories" : {
+        "lib" : ".",
+        "example" : "example"
+    },
+    "dependencies" : {
+        "fileify" : ">=0.0.1 <0.1",
+        "jade" : "=0.11.x",
+        "deck" : "0.0.x",
+        "jquery-browserify" : "=1.6.1",
+        "browserify" : ">=0.4.12 <0.5",
+        "seq" : ">=0.2.5 <0.3"
+    },
+    "browserify" : {
+        "main" : "./jadeify.js"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/substack/node-jadeify.git"
+    },
+    "keywords" : [
+        "browserify",
+        "bundle",
+        "middleware",
+        "jade",
+        "template"
+    ],
+    "author" : {
+        "name" : "James Halliday",
+        "email" : "mail@substack.net",
+        "url" : "http://substack.net"
+    },
+    "license" : "MIT/X11",
+    "engine" : { "node" : ">=0.4" }
+}
