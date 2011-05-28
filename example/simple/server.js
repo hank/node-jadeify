@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 
 var browserify = require('browserify');
 var bundle = browserify({
-    entry : __dirname + '/js/main.js',
+    entry : __dirname + '/static/main.js',
     require : [
         'deck',
         { jquery : 'jquery-browserify' }
