@@ -1,6 +1,6 @@
 {
     "name" : "jadeify",
-    "version" : "0.0.2",
+    "version" : "0.0.3",
     "description" : "Browserify middleware to render jade templates browser-side",
     "main" : "index.js",
     "directories" : {
@@ -10,6 +10,7 @@
     "dependencies" : {
         "fileify" : ">=0.0.1 <0.1",
         "jade" : "=0.11.x",
+        "traverse" : ">=0.3.5 <0.4",
         "deck" : "0.0.x",
         "jquery-browserify" : "=1.6.1",
         "browserify" : ">=0.4.12 <0.5",
