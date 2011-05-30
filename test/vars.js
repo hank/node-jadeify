@@ -8,19 +8,19 @@ var jadeify = require('jadeify');
 var jade = require('jade');
 var jsdom = require('jsdom');
 
-exports.simple = function () {
+exports.vars = function () {
     var bundle = browserify({
         require : { jquery : 'jquery-browserify' },
         watch : false,
     });
-    bundle.use(jadeify(__dirname + '/simple', 'jade'));
+    bundle.use(jadeify(__dirname + '/vars', 'jade'));
     
     var to = setTimeout(function () {
         assert.fail('never finished');
     }, 5000);
     
     bundle.on('ready', function (src) {
-        fs.readFile(__dirname + '/simple/index.jade', function (err, file) {
+        fs.readFile(__dirname + '/vars/index.jade', function (err, file) {
             var html = jade.render(file);
             
             jsdom.env(html, function (err, window) {
@@ -46,16 +46,32 @@ exports.simple = function () {
                 );
                 
                 var $ = c.require('jquery');
-                c.require('jadeify')('msg.jade', {
+                var msg = c.require('jadeify')('msg.jade', {
                     title : 'oh hello',
                     body : 'nice night for a test',
                 }).appendTo($('#messages'));
+                assert.ok(msg instanceof $);
                 
                 assert.equal(
-                    $('#messages .msg .title').text(),
+                    $('#messages .msg .title div').text(),
                     'oh hello'
                 );
                 
+                assert.equal(
+                    $('#messages .msg .body').text(),
+                    'nice night for a test'
+                );
+                
+                msg.vars.title = 'BREAKING NEWS';
+                
+                assert.equal(
+                    $('#messages .msg .title div').text(),
+                    'BREAKING NEWS'
+                );
+                
+                // body doesn't use the $ in the template so it doesn't get
+                // modified...
+                msg.vars.body = '...';
                 assert.equal(
                     $('#messages .msg .body').text(),
                     'nice night for a test'
