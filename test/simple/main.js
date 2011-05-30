@@ -7,5 +7,3 @@ var msg = jadeify('msg.jade', {
 });
 
 assert.ok(msg instanceof $);
-
-window.close();

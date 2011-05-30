@@ -14,7 +14,8 @@ exports.simple = function () {
         require : [
             'deck',
             { jquery : 'jquery-browserify' }
-        ]
+        ],
+        watch : false,
     });
     bundle.use(jadeify(__dirname + '/simple', 'jade'));
     
@@ -47,6 +48,24 @@ exports.simple = function () {
                         c.require('jadeify/views')['index.jade']
                     )
                 );
+                
+                var $ = c.require('jquery');
+                c.require('jadeify')('msg.jade', {
+                    title : 'oh hello',
+                    body : 'nice night for a test',
+                }).appendTo($('#messages'));
+                
+                assert.equal(
+                    $('#messages .msg .title').text(),
+                    'oh hello'
+                );
+                
+                assert.equal(
+                    $('#messages .msg .body').text(),
+                    'nice night for a test'
+                );
+                
+                window.close();
             });
         });
     });
