@@ -108,6 +108,7 @@ setters by calling `$var()` directly in your template logic.
 For instance you can create a handle `x` in a template:
 
 num.jade
+
 ````jade
 div.num
   div.x !{$var('x', 10 * 2 + 1)}
