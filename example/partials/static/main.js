@@ -7,19 +7,27 @@ $(window).ready(function () {
         var titles = [ 'foo', 'bar', 'baz' ];
         var bodies = [ 'what', 'lul', 'oh hello' ];
         
+        var body = jadeify('body.jade', {
+            date : new Date().toString(),
+            text : deck.pick(bodies)
+        });
+        
         var msg = jadeify('msg.jade', {
             title : deck.pick(titles),
-            body : jadeify('body.jade', {
-                date : new Date().toString(),
-                text : deck.pick(bodies)
-            })
+            body : body,
         }).appendTo($('#messages'));
         
         setTimeout(function () {
-            msg.animate({
-                opacity : 'toggle',
-                height : 'toggle'
-            }, 1000)
+            msg.vars.title = '[ deleted ]';
+            body.vars.text = 'This post is no longer available.';
+        }, 5000);
+        
+        setTimeout(function () {
+            msg.animate(
+                { opacity : 'toggle', height : 'toggle' },
+                1000,
+                function () { $(this).remove() }
+            );
         }, 6000);
     }, 2000);
 });
