@@ -14,7 +14,7 @@ module.exports = function (file, vars, opts) {
                 }).join('')
             );
         }
-        else if (node instanceof HTMLElement) {
+        else if (node instanceof window.HTMLElement) {
             this.update(node.outerHTML);
         }
     });

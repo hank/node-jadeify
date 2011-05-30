@@ -16,6 +16,9 @@
         "browserify" : ">=0.4.12 <0.5",
         "seq" : ">=0.2.5 <0.3"
     },
+    "devDependencies" : {
+        "jsdom" : "=0.2.x"
+    },
     "browserify" : {
         "main" : "./jadeify.js"
     },
