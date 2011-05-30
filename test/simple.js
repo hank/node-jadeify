@@ -60,8 +60,6 @@ exports.simple = function () {
                     $('#messages .msg .body').text(),
                     'nice night for a test'
                 );
-                
-                window.close();
             });
         });
     });

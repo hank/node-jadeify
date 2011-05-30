@@ -17,7 +17,8 @@
         "seq" : ">=0.2.5 <0.3"
     },
     "devDependencies" : {
-        "jsdom" : "=0.2.x"
+        "jsdom" : "=0.2.x",
+        "expresso" : "0.7.x"
     },
     "browserify" : {
         "main" : "./jadeify.js"

@@ -77,7 +77,10 @@ exports.vars = function () {
                     'nice night for a test'
                 );
                 
-                window.close();
+                // expression test with calling $var()
+                assert.equal($('#messages .msg .exp div').text(), '555');
+                msg.vars.x = 999;
+                assert.equal($('#messages .msg .exp div').text(), '999');
             });
         });
     });
