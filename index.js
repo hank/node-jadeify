@@ -13,11 +13,12 @@ var sources = {
     traverse : browserify.wrap('traverse').source,
 };
 
-module.exports = function (opts) {
+module.exports = function (opts, ext) {
     if (!opts) opts = {};
     if (typeof opts === 'string') {
         opts = { views : opts };
     }
+    if (ext) opts.ext = ext;
     
     var viewdirs = [ './views' ];
     
@@ -41,7 +42,7 @@ module.exports = function (opts) {
     if (!viewdir) throw new Error('No suitable views directory');
     
     return function (src, next) {
-        fileify('jadeify/views', viewdir)
+        fileify('jadeify/views', viewdir, opts.ext)
         (src, function (fsrc, fnext) {
             // eval but don't run the entries which are behind a
             // process.nextTick() which calls setTimeout
